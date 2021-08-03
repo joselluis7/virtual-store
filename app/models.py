@@ -1,5 +1,3 @@
-from enum import unique
-from operator import index
 from app.extension import db
 
 

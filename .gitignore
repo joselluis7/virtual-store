@@ -132,3 +132,4 @@ dmypy.json
 .vscode
 countdown.py
 poetry.lock
+.rest
