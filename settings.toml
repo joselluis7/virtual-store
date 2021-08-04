@@ -1,11 +1,12 @@
 [default]
-SQLALCHEMY_TRACK_MODIFICATIONS=false
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+SECRET_KEY = "super-secret"
 
 [development]
-SQLALCHEMY_DATABASE_URI="postgresql://postgres:password@127.0.0.1/flask-store-dev"
+SQLALCHEMY_DATABASE_URI = "postgresql://postgres:password@127.0.0.1/flask-store-dev"
 
 [production]
-SQLALCHEMY_DATABASE_URI="postgresql://postgres:secret@127.0.0.1/flask-store"
+SQLALCHEMY_DATABASE_URI = "postgresql://postgres:secret@127.0.0.1/flask-store"
 
 [testing]
-SQLALCHEMY_DATABASE_URI="sqlite://"
+SQLALCHEMY_DATABASE_URI = "sqlite://"
