@@ -17,6 +17,7 @@ flask-jwt-extended = "3.24.1"
 flask-admin = "1.5.6"
 python-slugify = "4.0.1"
 flask-mail = "0.9.1"
+PyJWT = "1.7.1"
 
 [tool.poetry.dev-dependencies]
 python-dotenv = "0.14.0"
