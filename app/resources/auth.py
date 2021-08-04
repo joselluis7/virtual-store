@@ -25,7 +25,7 @@ class Login(Resource):
         print("email", email)
         print("password", password)
         user = User.query.filter_by(email=email).first()
-        if not user or not user.password == password:
+        if not user or not check_password_hash(user.password, password):
             return {
                 "error": "authentication fails! user or password are incorrect"
             }, 400
@@ -47,7 +47,9 @@ class Signup(Resource):
 
         user = User.query.filter_by(email=args.email).first()
         if not user:
-            user = User(email=args.email, password=args.password)
+            user = User(
+                email=args.email, password=generate_password_hash(args.password)
+            )
             db.session.add(user)
             try:
                 db.session.commit()
