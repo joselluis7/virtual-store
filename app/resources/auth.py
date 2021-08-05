@@ -2,12 +2,14 @@ import logging
 from base64 import b64decode
 from datetime import timedelta
 
-from app.extension import db
-from app.models import User
+
 from flask import jsonify, request
 from flask_jwt_extended import create_access_token
 from flask_restful import Resource, reqparse
 from werkzeug.security import check_password_hash, generate_password_hash
+
+from app.extension import db
+from app.models import User
 
 
 class Login(Resource):
@@ -59,3 +61,18 @@ class Signup(Resource):
                 return jsonify({"error": "something went wrong"}), 500
             return jsonify({"message": "user added successfully"})
         return jsonify({"error": "user already exists"})
+
+
+class ForgotPassword(Resource):
+
+    def post(self):
+        parser = reqparse.RequestParser(trim=True)
+        parser.add_argument("email", required=True)
+        args = parser.parse_args()
+
+        user = User.query.filter_by(email=args.email).first()
+
+        if not user:
+            return {"error": "user does not exists"}, 400
+
+        return {"id": user.id}

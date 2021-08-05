@@ -10,3 +10,4 @@ def init_app(app):
     api = Api(app, prefix="/api")
     api.add_resource(auth.Login, "/auth/login")
     api.add_resource(auth.Signup, "/auth/signup")
+    api.add_resource(auth.ForgotPassword, "/auth/forgot-password")
