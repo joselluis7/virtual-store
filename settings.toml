@@ -1,6 +1,6 @@
 [default]
 SQLALCHEMY_TRACK_MODIFICATIONS = false
-SECRET_KEY = "super-secret"
+SECRET_KEY = "@jinja {{ env.SECRET_KEY }}"
 
 [development]
 SQLALCHEMY_DATABASE_URI = "postgresql://postgres:password@127.0.0.1/flask-store-dev"
