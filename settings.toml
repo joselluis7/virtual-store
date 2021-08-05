@@ -2,6 +2,14 @@
 SQLALCHEMY_TRACK_MODIFICATIONS = false
 SECRET_KEY = "@jinja {{ env.SECRET_KEY }}"
 
+MAIL_SENDER = "@jinja {{ env.MAIL_SENDER }} "
+MAIL_SERVER = "@jinja {{ env.MAIL_SERVER }} "
+MAIL_PORT = "@jinja {{ env.MAIL_PORT }} "
+MAIL_USERNAME = "@jinja {{ env.MAIL_USERNAME }} "
+MAIL_PASSWORD = "@jinja {{ env.MAIL_PASSWORD }} "
+MAIL_USE_TLS = true
+MAIL_USE_SSL = false
+
 [development]
 SQLALCHEMY_DATABASE_URI = "postgresql://postgres:password@127.0.0.1/virtual-store-dev"
 
