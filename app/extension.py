@@ -20,8 +20,8 @@ def init_app(app):
     mail.init_app(app)
     Migrate(app, db)
 
-    from app.models import User
+    from app.models import User, Product, Category
 
     @app.shell_context_processor
     def make_shell_context():
-        return {"app": app, "db": db, "User": User}
+        return {"app": app, "db": db, "User": User, "Product": Product, "Category": Category}

@@ -55,6 +55,12 @@ class Signup(Resource):
             db.session.add(user)
             try:
                 db.session.commit()
+                send_mail(
+                    "virtual store",
+                    "dl.dsi.infraestruturas@zap.co.ao",
+                    "welcome",
+                    email=user.email
+                )
             except Exception as e:
                 db.session.rollback()
                 logging.critical(str(e))
@@ -81,7 +87,7 @@ class ForgotPassword(Resource):
 
         send_mail(
             "Account Recovery",
-            "dl.dsi.infraestruturas@zap.co.ao",
+            "zeluis0712@gmail.com",
             "forgot-password",
             generate_password=generate_password,
         )
