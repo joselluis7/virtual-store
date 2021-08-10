@@ -69,15 +69,14 @@ class ForgotPassword(Resource):
         parser = reqparse.RequestParser(trim=True)
         parser.add_argument("email", required=True)
         args = parser.parse_args()
-        print("Requests ", request.args.listvalues, request.args.lists)
         user = User.query.filter_by(email=args.email).first()
 
         if not user:
             return {"error": "user does not exists"}, 400
 
         generate_password = secrets.token_hex(4)
-        print("PASS TEMP: ", generate_password)
         user.password = generate_password_hash(generate_password)
+        db.session.add(user)
         db.session.commit()
 
         send_mail(
