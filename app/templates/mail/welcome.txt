@@ -1,0 +1,6 @@
+Hello, {{ email }} Wellcome to our store
+This is actually your store, feel free to get whetever you want
+
+Regards,
+Thomas Elliot    
+Customer Care Assistant
