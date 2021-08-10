@@ -1,4 +1,5 @@
 from enum import unique
+from datetime import datetime
 
 from sqlalchemy.orm import backref
 from app.extension import db
@@ -27,6 +28,7 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=False)
     category = db.Column(db.Integer, db.ForeignKey("categories.id"))
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
     def __repr__(self):
         return self.name
