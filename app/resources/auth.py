@@ -3,13 +3,16 @@ import secrets
 from base64 import b64decode
 from datetime import timedelta
 
-from app.extension import db
-from app.models import User
-from app.services.mail import send_mail
+
 from flask import jsonify, request
 from flask_jwt_extended import create_access_token
 from flask_restful import Resource, reqparse
 from werkzeug.security import check_password_hash, generate_password_hash
+
+
+from app.extension import db
+from app.models import User
+from app.services.mail import send_mail
 
 
 class Login(Resource):
@@ -59,14 +62,14 @@ class Signup(Resource):
                     "virtual store",
                     "dl.dsi.infraestruturas@zap.co.ao",
                     "welcome",
-                    email=user.email
+                    email=user.email,
                 )
             except Exception as e:
                 db.session.rollback()
                 logging.critical(str(e))
-                return jsonify({"error": "something went wrong"}), 500
-            return jsonify({"message": "user added successfully"})
-        return jsonify({"error": "user already exists"})
+                return {"error": "something went wrong"}, 500
+            return {"message": "user added successfully"}, 200
+        return {"mesage": "user already exists"}, 201
 
 
 class ForgotPassword(Resource):

@@ -24,4 +24,10 @@ def init_app(app):
 
     @app.shell_context_processor
     def make_shell_context():
-        return {"app": app, "db": db, "User": User, "Product": Product, "Category": Category}
+        return {
+            "app": app,
+            "db": db,
+            "User": User,
+            "Product": Product,
+            "Category": Category,
+        }
