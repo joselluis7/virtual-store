@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy.orm import backref
 
 from app.extension import db
-from app.enums import EStatus
+from app.enums.EStatus import EStatus
 
 
 class User(db.Model):

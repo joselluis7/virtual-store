@@ -16,4 +16,4 @@ def init_app(app):
     api.add_resource(products.ProductGet, "/products/<slug>")
 
     api.add_resource(categories.ListCategory, "/categories")
-    api.add_resource(categories.Create, "/categories/<slug>")
+    api.add_resource(categories.Create, "/categories")

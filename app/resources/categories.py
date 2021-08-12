@@ -5,17 +5,20 @@ from flask_restful import Resource, marshal_with, reqparse
 
 from app.response_template import categories_fields
 from app.models import Category, Product
+from app.extension import db
 
 
 class Create(Resource):
 
     def post(self):
         parser = reqparse.RequestParser(trim=True)
-        parser.add_argument("name", reqired=True, help="required field")
+        parser.add_argument("name", required=True, help="required field")
         parser.add_argument("slug", required=True, help="required field")
         args = parser.parse_args()
+        print("FFFF: ",args.name)
 
-        category = Category.query.first(slug=args.slag)
+        category = Category.query.filter_by(slug=args.slug).first()
+        print(category)
         if not category:
             category = Category(name=args.name, slug=args.slug)
             db.session.add(category)
