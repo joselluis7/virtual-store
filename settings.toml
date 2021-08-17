@@ -11,10 +11,10 @@ MAIL_USE_TLS = true
 MAIL_USE_SSL = false
 
 [development]
-SQLALCHEMY_DATABASE_URI = "postgresql://postgres:password@127.0.0.1/virtual-store-dev"
+SQLALCHEMY_DATABASE_URI = "@jinja {{ env.DEV_DATABASE }}"
 
 [production]
-SQLALCHEMY_DATABASE_URI = "postgresql://postgres:secret@127.0.0.1/virtual-store"
+SQLALCHEMY_DATABASE_URI = "@jinja {{ env.PROD_DATABASE }}"
 
 [testing]
-SQLALCHEMY_DATABASE_URI = "sqlite://"
+SQLALCHEMY_DATABASE_URI = "@jinja {{ env.TESTING_DATABASE }}"
