@@ -3,7 +3,7 @@ import flask.scaffold
 flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 from flask_restful import Api
 
-from app.resources import auth, products,categories
+from app.resources import auth, categories, order, products
 
 
 def init_app(app):
@@ -16,4 +16,8 @@ def init_app(app):
     api.add_resource(products.ProductGet, "/products/<slug>")
 
     api.add_resource(categories.ListCategory, "/categories")
-    api.add_resource(categories.Create, "/categories")
+    api.add_resource(categories.Create, "/categories", endpoint="create_category")
+
+    api.add_resource(order.Create, "/order", endpoint="create_order")
+    api.add_resource(order.Pay, "/order/pay")
+    api.add_resource(order.Notification, "/order/notification")
