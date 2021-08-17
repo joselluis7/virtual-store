@@ -1,9 +1,8 @@
 from datetime import datetime
 
-from sqlalchemy.orm import backref
 
-from app.extension import db
 from app.enums.EStatus import EStatus
+from app.extension import db
 
 
 class User(db.Model):
@@ -29,7 +28,7 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=False)
     category = db.Column(db.Integer, db.ForeignKey("categories.id"))
-    created_at = db.Column(db.DateTime, default=datetime.now)
+    created_at = db.Column(db.DateTime, default=datetime.now())
 
     def __repr__(self):
         return self.name
@@ -56,7 +55,7 @@ class Order(db.Model):
     order_number = db.Column(db.String(20), unique=True, nullable=False)
     status = db.Column(db.String(30), default=EStatus.CREATED.value, nullable=False)
     item = db.relationship("Item", backref="order", uselist=False)
-    created_at = db.Column(db.DateTime, default=datetime.now)
+    created_at = db.Column(db.DateTime, default=datetime.now())
 
     def __repr__(self):
         return f"order number: {self.order_number}"
@@ -67,7 +66,7 @@ class Item(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     prduct_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
