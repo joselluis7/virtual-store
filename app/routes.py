@@ -18,6 +18,6 @@ def init_app(app):
     api.add_resource(categories.ListCategory, "/categories")
     api.add_resource(categories.Create, "/categories", endpoint="create_category")
 
-    api.add_resource(order.Create, "/order", endpoint="create_order")
+    api.add_resource(order.Create, "/order/create", endpoint="create_order")
     api.add_resource(order.Pay, "/order/pay")
     api.add_resource(order.Notification, "/order/notification")
