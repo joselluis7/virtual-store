@@ -10,4 +10,4 @@ def send_mail(subject, to, template, **kwargs):
     )
     msg.body = render_template(f"mail/{template}.txt", **kwargs)
     msg.html = render_template(f"mail/{template}.html", **kwargs)
-    mail.send(msg)
+    #mail.send(msg)
