@@ -35,7 +35,7 @@ class Login(Resource):
                 "error": "authentication fails! user or password are incorrect"
             }, 400
 
-        token = create_access_token({"id": user.id}, expires_delta=timedelta(minutes=5))
+        token = create_access_token({"id": user.id}, expires_delta=timedelta(minutes=50))
 
         return {"encoded_token": token}
 
@@ -56,6 +56,7 @@ class Signup(Resource):
                 email=args.email, password=generate_password_hash(args.password)
             )
             db.session.add(user)
+            print(f"{user.id, user.password, user.email}")
             try:
                 db.session.commit()
                 send_mail(
