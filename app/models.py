@@ -11,6 +11,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), nullable=False, unique=True, index=True)
     password = db.Column(db.String(255), nullable=False)
+    item = db.relationship("Item", backref="user", uselist=True)
 
     def __repr__(self):
         return self.email
@@ -29,6 +30,7 @@ class Product(db.Model):
     description = db.Column(db.Text, nullable=False)
     category = db.Column(db.Integer, db.ForeignKey("categories.id"))
     created_at = db.Column(db.DateTime, default=datetime.now())
+    item = db.relationship("Item", backref="product", uselist=True)
 
     def __repr__(self):
         return self.name
@@ -42,6 +44,7 @@ class Category(db.Model):
     name = db.Column(db.String(150), nullable=False)
     slug = db.Column(db.String(150), nullable=False, unique=True, index=True)
     products = db.relationship("Product", backref="categories", uselist=True)
+    
 
     def __repr__(self):
         return self.name
@@ -54,7 +57,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_number = db.Column(db.String(20), unique=True, nullable=False)
     status = db.Column(db.String(30), default=EStatus.CREATED.value, nullable=False)
-    item = db.relationship("Item", backref="order", uselist=False)
+    item = db.relationship("Item", backref="order", uselist=True)
     created_at = db.Column(db.DateTime, default=datetime.now())
 
     def __repr__(self):

@@ -17,6 +17,10 @@ item_fields = {"quantity": fields.Integer, "price": fields.Float}
 order_fields = {
     "id": fields.Integer,
     "order_number": fields.String,
-    "items": fields.Nested(item_fields),
+    "item": fields.Nested(item_fields),
     "status": fields.String,
+}
+user_orders_fields = {
+    "order": fields.Nested(order_fields),
+    "product": fields.Nested(products_fields)
 }
