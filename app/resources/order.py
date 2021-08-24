@@ -55,6 +55,11 @@ class Create(Resource):
         return marshal(order, order_fields, "order")
 
 
+class OrderGet(Resource):
+    def get(self, number):
+        order = Order.query.filter_by(order_number=number).first()
+        return marshal(order, order_fields, "order")
+
 class Pay(Resource):
     pass
 
