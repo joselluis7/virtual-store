@@ -5,7 +5,6 @@ from app.extension import db
 from app.models import Item, Order, Product
 from app.response_template import order_fields
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from flask_migrate import current
 from flask_restful import Resource, marshal, reqparse
 
 
@@ -22,7 +21,7 @@ class Create(Resource):
         args = parser.parse_args()
 
         product = Product.query.get(args.product_id)
-        print(f"{product.id} EPERA ")
+        print(f"ID {product.id} NAME: {product.name} USER: {current_user['id']} EPERA ")
         if not product :
             return {"error": "product does not exists"}, 400
 
@@ -38,19 +37,19 @@ class Create(Resource):
 
             item = Item()
             item.order_id = order.id
-            item.prduct_id = product.id
+            item.product_id = product.id
             item.user_id = current_user['id']
             item.quantity = args.quantity
             item.price = product.price * item.quantity 
             db.session.add(item)
             db.session.commit()
-            marshal(order, order_fields, "order")
+            
         except Exception as e :
             logging.critical(str(e))
             db.session.rollback()
             return {"error": "unable to create order"}, 500
 
-        return "teste"
+        return marshal(order, order_fields, "order")
 
 class Pay(Resource):
     pass
