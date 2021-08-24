@@ -18,8 +18,9 @@ item_fields = {
 }
 
 order_fields = {
-    "reference_id": fields.String,
+    "id": fields.Integer,
+    "order_number": fields.String,
     "items": fields.Nested(item_fields),
-    "status": fields.String
+    "status": fields.String,
 
 }
