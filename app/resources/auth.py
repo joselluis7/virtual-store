@@ -35,7 +35,9 @@ class Login(Resource):
                 "error": "authentication fails! user or password are incorrect"
             }, 400
 
-        token = create_access_token({"id": user.id}, expires_delta=timedelta(minutes=50))
+        token = create_access_token(
+            {"id": user.id}, expires_delta=timedelta(minutes=50)
+        )
 
         return {"encoded_token": token}
 

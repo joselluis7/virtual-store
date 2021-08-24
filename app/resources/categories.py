@@ -3,6 +3,7 @@ import logging
 
 from flask_restful import Resource, marshal_with, reqparse
 
+
 from app.response_template import categories_fields
 from app.models import Category
 from app.extension import db

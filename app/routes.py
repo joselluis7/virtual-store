@@ -3,6 +3,7 @@ import flask.scaffold
 flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 from flask_restful import Api
 
+
 from app.resources import auth, categories, order, products
 
 

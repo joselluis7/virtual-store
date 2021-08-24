@@ -1,6 +1,5 @@
-
-
 from flask_restful import Resource, marshal_with, marshal
+
 
 from app.extension import db
 from app.models import Category, Product
