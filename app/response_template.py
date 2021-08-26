@@ -1,3 +1,4 @@
+from os import pathconf
 from flask_restful import fields
 
 
@@ -24,3 +25,9 @@ user_orders_fields = {
     "order": fields.Nested(order_fields),
     "product": fields.Nested(products_fields)
 }
+profile_fields = {
+    "first_name": fields.String,
+    "last_name": fields.String,
+    "document_id": fields.String,
+    "phone": fields.String
+    }

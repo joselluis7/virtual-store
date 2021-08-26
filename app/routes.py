@@ -24,4 +24,4 @@ def init_app(app):
     api.add_resource(order.Notification, "/order/notification")
 
     api.add_resource(user.Orders, "/user/orders")
-
+    api.add_resource(user.ProfileUpdate, "/user/profile")
